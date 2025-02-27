@@ -149,7 +149,7 @@ Mount Point `/mnt` This is a standard directory where temporary file systems can
 
 - Assembly of **/boot**
     ```bash
-    mkdir /mnt/boot/efi                     #-- Creation of directory
+    mkdir -p /mnt/boot/efi                     #-- Creation of directory
     mount /dev/nvme0n1p1 /mnt/boot/efi      #-- Assembly of /boot
     ```
 - Assembly of **/root**
@@ -158,7 +158,7 @@ Mount Point `/mnt` This is a standard directory where temporary file systems can
     ```
 - Assembly of **/home** or other directories that are similar
     ```bash
-    mkdir /mnt/home
+    mkdir -p /mnt/home
     mount /dev/nvme0n1p4 /mnt/home      #-- Root mounding
     ```
 > Note: For BIOS you only have to mount swap and root, the above configuration is for GPT with UEFI.
