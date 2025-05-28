@@ -1,0 +1,187 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-weight: bold;
+    font-size: 11px;
+    min-height: 0;
+    transition: 0.3s;
+}
+
+window#waybar {
+    background: rgba(21, 18, 27, 0);
+    color: #cdd6f4;
+}
+
+tooltip {
+    background: #1e1e2e;
+    border-radius: 10px;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: #11111b;
+    transition: 0.3s;
+}
+
+#workspaces button {
+    padding: 4px;
+    color: #313244;
+    margin-right: 1px;
+}
+
+#workspaces button.active {
+    color: #a6adc8;
+}
+
+#workspaces button.focused {
+    color: #a6adc8;
+    background: #eba0ac;
+    border-radius: 20px;
+}
+
+#workspaces button.urgent {
+    color: #11111b;
+    background: #a6e3a1;
+    border-radius: 20px;
+}
+
+#workspaces button:hover {
+    background: #11111b;
+    color: #cdd6f4;
+    border-radius: 20px;
+}
+
+#custom-power_profile,
+#custom-weather,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#bluetooth,
+#temperature,
+#workspaces,
+#tray,
+#backlight {
+    background: #1e1e2e;
+    opacity: 0.8;
+    padding: 0 10px;
+    margin: 0;
+    margin-top: 5px;
+    border: 1px solid #181825;
+    border-radius: 20px 0px 0px 20px;
+    color: #f9e2af; /* Color del texto/ícono */
+    font-family: "Symbols Nerd Font"; /* Asegura íconos */
+    transition: all 0.3s ease; /* Efecto suave */
+}
+
+#backlight:hover {
+    opacity: 1;
+    background: #313244;
+}
+
+#temperature {
+    border-radius: 20px 0px 0px 20px;
+    background: #1e1e2e;
+    color: #89dceb;
+}
+
+#temperature.critical {
+    background: linear-gradient(
+        90deg,
+        rgba(227, 121, 140, 0.3) 0%,
+        rgba(203, 111, 139, 0.1) 100%
+    );
+    box-shadow: 0 0 5px #e3798c;
+}
+
+#tray {
+    border-radius: 20px;
+    margin-right: 5px;
+    padding: 0px 4px;
+}
+
+#workspaces {
+    background: #1e1e2e;
+    border-radius: 20px;
+    margin-left: 5px;
+    padding-right: 0px;
+    padding-left: 5px;
+}
+
+#custom-power_profile {
+    color: #a6e3a1;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#window {
+    border-radius: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+#clock {
+    background: #1e1e2e;
+    color: #89dceb;
+    border-radius: 0px 20px 20px 0px;
+    padding: 0 15px;
+    margin-left: -5px; /* Para unirse visualmente con temperature */
+    transition: all 0.3s ease;
+}
+
+#clock:hover {
+    background: #313244;
+    color: #f9e2af;
+}
+
+#network {
+    color: #f9e2af;
+    border-radius: 20px 20px 20px 20px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+#bluetooth {
+    color: #89b4fa;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#pulseaudio {
+    color: #89b4fa;
+    border-radius: 0px;
+}
+
+#pulseaudio.microphone {
+    color: #cba6f7;
+    border-left: 0px;
+    border-right: 0px;
+    border-radius: 0px 20px 20px 0px;
+    margin-right: 5px;
+    padding-right: 8px;
+}
+
+#battery {
+    color: #a6e3a1;
+    border-radius: 0 20px 20px 0;
+    margin-right: 5px;
+    border-left: 0px;
+}
+
+#battery.warning {
+    color: #f9e2af; /* Amarillo en "warning" */
+}
+
+#battery.critical {
+    color: #f38ba8; /* Rojo en "critical" */
+}
+
+#battery.charging {
+    color: #89dceb; /* Azul claro cuando carga */
+}
+
+#custom-weather {
+    border-radius: 20px;
+    border-right: 0px;
+    margin-left: 0px;
+}

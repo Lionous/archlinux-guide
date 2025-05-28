@@ -1,0 +1,164 @@
+{
+  "layer": "top",
+  "position": "top",
+  "mod": "dock",
+  "exclusive": true,
+  "passthrough": false,
+  "gtk-layer-shell": true,
+  "height": 30,
+  "modules-left": ["hyprland/workspaces", "network", "hyprland/window"],
+  "modules-center": ["clock", "custom/weather"],
+  "modules-right": [
+    "tray",
+    "temperature",
+    "battery",
+
+    "backlight",
+    "pulseaudio",
+    "pulseaudio#microphone",
+    "bluetooth",
+  ],
+
+  "hyprland/window": {
+    "format": "🐧 {}",
+  },
+
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "on-click": "activate",
+    "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+    },
+    "format": "{name}",
+    "format-focused": "{name}",
+    "format-visible": "{name}",
+    "format-urgent": "{name}",
+  },
+
+  "custom/weather": {
+    "tooltip": true,
+    "format": "{}",
+    "interval": 30,
+    "exec": "~/.config/waybar/scripts/waybar-wttr.py",
+    "return-type": "json",
+  },
+
+  "tray": {
+    "icon-size": 15,
+    "spacing": 10,
+  },
+
+  "clock": {
+    "format": " {:%H:%M   %a, %d %b}",
+    "format-alt": " {:%H:%M:%S}  {:%Y-%m-%d}", // Formato alternativo al hacer clic
+    "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#f5c2e7'><b>{}</b></span>",
+        "days": "<span color='#a6e3a1'><b>{}</b></span>",
+        "weeks": "<span color='#f9e2af'><b>W{}</b></span>",
+        "weekdays": "<span color='#89dceb'><b>{}</b></span>",
+        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click": "tzlist", // Muestra zonas horarias (necesita 'tzlist' instalado)
+      "on-click-right": "gnome-calendar", // Abre calendario gráfico
+      "on-scroll-up": "tzup", // Cambia a zona horaria +1 (script personalizado)
+      "on-scroll-down": "tzdown", // Cambia a zona horaria -1
+    },
+    "interval": 30, // Actualización más precisa para segundos
+  },
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon} {percent}%",
+    "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
+    "on-scroll-up": "brightnessctl -d intel_backlight set +10%",
+    "on-scroll-down": "brightnessctl -d intel_backlight set 10%-",
+    "on-click": "brightnessctl -d intel_backlight set 50%",
+    "min-length": 9,
+    "smooth-scrolling-threshold": 1,
+    "tooltip": false,
+  },
+
+  "battery": {
+    "states": {
+      "good": 80,
+      "warning": 20,
+      "critical": 15,
+    },
+    "format": "{icon} {capacity}%",
+    "format-charging": "󰂄 {capacity}%",
+    "format-plugged": "󰚥 {capacity}%",
+    "format-alt": "{time} {icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "interval": 20,
+    "tooltip": true,
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰖁 Muted",
+    "on-click": "pamixer -t",
+    "on-scroll-up": "pamixer -i 5",
+    "on-scroll-down": "pamixer -d 5",
+    "scroll-step": 5,
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋐",
+      "phone": "",
+      "portable": "󰓃",
+      "car": "󰄛",
+      "default": ["󰕿", "󰖀", "󰕾"],
+    },
+    "tooltip": false,
+  },
+
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " Muted",
+    "on-click": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "scroll-step": 5,
+  },
+
+  "temperature": {
+    "hwmon-path": "/sys/class/thermal/thermal_zone0/temp",
+    "critical-threshold": 80,
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 10,
+    "tooltip": true,
+  },
+
+  "network": {
+    "format-wifi": "  {signalStrength}%",
+    "format-ethernet": "{ipaddr}/{cidr} ",
+    "tooltip-format": "{essid} - {ifname} via {gwaddr} ",
+    "format-linked": "{ifname} (No IP) ",
+    "format-disconnected": "Disconnected ⚠",
+    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
+  },
+
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-no-controller": "",
+    "format-connected": " {num_connections}",
+    "tooltip-format": "{device_alias}",
+    "tooltip-format-connected": " {device_enumerate}",
+    "tooltip-format-enumerate-connected": "{device_alias}",
+  },
+}
