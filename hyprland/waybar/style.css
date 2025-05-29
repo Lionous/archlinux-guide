@@ -69,9 +69,9 @@ tooltip {
     margin-top: 5px;
     border: 1px solid #181825;
     border-radius: 20px 0px 0px 20px;
-    color: #f9e2af; /* Color del texto/ícono */
-    font-family: "Symbols Nerd Font"; /* Asegura íconos */
-    transition: all 0.3s ease; /* Efecto suave */
+    color: #f9e2af;
+    font-family: "Symbols Nerd Font";
+    transition: all 0.3s ease;
 }
 
 #backlight:hover {
@@ -80,7 +80,7 @@ tooltip {
 }
 
 #temperature {
-    border-radius: 20px 0px 0px 20px;
+    border-radius: 0px 0px 0px 0px;
     background: #1e1e2e;
     color: #89dceb;
 }
@@ -123,9 +123,8 @@ tooltip {
 #clock {
     background: #1e1e2e;
     color: #89dceb;
-    border-radius: 0px 20px 20px 0px;
-    padding: 0 15px;
-    margin-left: -5px; /* Para unirse visualmente con temperature */
+    border-radius: 20px 20px 20px 20px;
+    padding: 5px 15px;
     transition: all 0.3s ease;
 }
 
@@ -169,19 +168,32 @@ tooltip {
 }
 
 #battery.warning {
-    color: #f9e2af; /* Amarillo en "warning" */
+    color: #f9e2af;
 }
 
 #battery.critical {
-    color: #f38ba8; /* Rojo en "critical" */
+    color: #f38ba8;
 }
 
 #battery.charging {
-    color: #89dceb; /* Azul claro cuando carga */
+    color: #89dceb;
 }
 
 #custom-weather {
-    border-radius: 20px;
+    border-radius: 0 20px 20px 0;
     border-right: 0px;
     margin-left: 0px;
+}
+
+#custom-cpu {
+    background: #1e1e2e;
+    color: #f5c2e7;
+    border-radius: 20px 0px 0px 20px;
+    border-left: 0px;
+    border-right: 0px;
+    opacity: 0.8;
+    padding: 0 10px;
+    margin: 0;
+    margin-top: 5px;
+    border: 1px solid #181825;
 }

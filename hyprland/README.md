@@ -1,0 +1,68 @@
+# Configuraciones adicionales
+
+# ✅ Instalar fuentes emoji en Arch Linux
+```bash
+sudo pacman -S ttf-apple-emoji
+sudo pacman -S noto-fonts noto-fonts-emoji ttf-joypixels ttf-twemoji
+sudo pacman -S ttf-nerd-fonts-symbols
+```
+
+# ✅ Themes
+## En Arch Linux o derivados (Hyprland suele usarse con Arch)
+```bash
+sudo pacman -S nwg-look
+sudo pacman -S qt5ct qt6ct
+```
+## Para Qt5 y Qt6
+```bash
+export QT_QPA_PLATFORMTHEME=qt5ct
+export QT_QPA_PLATFORMTHEME=qt6ct
+```
+```bash
+nwg-look
+```
+
+# ✅ Arranque automatico con SDDM
+
+## 1. Instalar SDDM
+```bash
+sudo pacman -S sddm
+```
+## 2. Habilitar el servicio para que se inicie al arrancar
+```bash
+sudo systemctl enable sddm
+sudo systemctl start sddm
+```
+## 3. Crear la sesión para Hyprland
+```bash
+sudo nano /usr/share/wayland-sessions/hyprland.desktop
+```
+```bash
+[Desktop Entry]
+Name=Hyprland
+Comment=An intelligent dynamic tiling Wayland compositor
+Exec=Hyprland
+Type=Application
+```
+## 4. Habilitar autologin (para entrar directo a tu sesión sin elegir usuario)
+```bash
+sudo nano /etc/sddm.conf
+```
+```bash
+[Autologin]
+User=TU_USUARIO
+Session=hyprland.desktop
+```
+
+## Reinicia
+```bash
+reboot
+```
+
+### Themes SDDM
+1. sddm-theme-chili
+2. sddm-theme-corners
+3. sddm-theme-astronaut
+4. sddm-sugar-candy-git
+
+note: puedes verlo cada uno en su respectivo repositorio

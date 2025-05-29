@@ -5,14 +5,11 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 30,
+  "height": 32,
   "modules-left": ["hyprland/workspaces", "network", "hyprland/window"],
-  "modules-center": ["clock", "custom/weather"],
+  "modules-center": ["clock", "custom/cpu", "temperature", "battery"],
   "modules-right": [
     "tray",
-    "temperature",
-    "battery",
-
     "backlight",
     "pulseaudio",
     "pulseaudio#microphone",
@@ -38,13 +35,15 @@
     "format-urgent": "{name}",
   },
 
+  /*
   "custom/weather": {
     "tooltip": true,
     "format": "{}",
-    "interval": 30,
+    "interval": 3600,
     "exec": "~/.config/waybar/scripts/waybar-wttr.py",
     "return-type": "json",
   },
+  */
 
   "tray": {
     "icon-size": 15,
@@ -53,7 +52,7 @@
 
   "clock": {
     "format": " {:%H:%M   %a, %d %b}",
-    "format-alt": " {:%H:%M:%S}  {:%Y-%m-%d}", // Formato alternativo al hacer clic
+    "format-alt": " {:%H:%M:%S}  {:%Y-%m-%d}",
     "tooltip-format": "<big>{:%A, %d %B %Y}</big>\n<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode": "month",
@@ -69,12 +68,12 @@
       },
     },
     "actions": {
-      "on-click": "tzlist", // Muestra zonas horarias (necesita 'tzlist' instalado)
-      "on-click-right": "gnome-calendar", // Abre calendario gráfico
-      "on-scroll-up": "tzup", // Cambia a zona horaria +1 (script personalizado)
-      "on-scroll-down": "tzdown", // Cambia a zona horaria -1
+      "on-click": "tzlist",
+      "on-click-right": "gnome-calendar",
+      "on-scroll-up": "tzup",
+      "on-scroll-down": "tzdown",
     },
-    "interval": 30, // Actualización más precisa para segundos
+    "interval": 60,
   },
 
   "backlight": {
@@ -100,7 +99,7 @@
     "format-plugged": "󰚥 {capacity}%",
     "format-alt": "{time} {icon}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
-    "interval": 20,
+    "interval": 60,
     "tooltip": true,
   },
 
@@ -133,16 +132,6 @@
     "scroll-step": 5,
   },
 
-  "temperature": {
-    "hwmon-path": "/sys/class/thermal/thermal_zone0/temp",
-    "critical-threshold": 80,
-    "format": " {temperatureC}°C",
-    "format-critical": " {temperatureC}°C",
-    "format-icons": ["", "", "", "", ""],
-    "interval": 10,
-    "tooltip": true,
-  },
-
   "network": {
     "format-wifi": "  {signalStrength}%",
     "format-ethernet": "{ipaddr}/{cidr} ",
@@ -160,5 +149,23 @@
     "tooltip-format": "{device_alias}",
     "tooltip-format-connected": " {device_enumerate}",
     "tooltip-format-enumerate-connected": "{device_alias}",
+  },
+
+  "temperature": {
+    "hwmon-path": "/sys/class/thermal/thermal_zone0/temp",
+    "critical-threshold": 80,
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 30,
+    "tooltip": true,
+  },
+
+  "custom/cpu": {
+    "exec": "bash -c \"top -bn1 | awk '/Cpu\\(s\\)/ {print \\$2 + \\$4}'\"",
+    "interval": 10,
+    "format": "  {}%",
+    "tooltip": true,
+    "tooltip-format": "Uso actual de CPU: {}%",
   },
 }
