@@ -66,3 +66,34 @@ reboot
 4. sddm-sugar-candy-git
 
 note: puedes verlo cada uno en su respectivo repositorio
+
+
+# ✅ Micro terminal-based text
+```bash
+pacman -S micro
+```
+- Config editor
+```bash
+micro ~/.config/micro/settings.json
+```
+
+- my config
+```bash
+{
+    "keymap.Alt-c": "Clipboard.Copy",
+    "keymap.Alt-v": "Clipboard.Paste",
+    "keymap.Alt-x": "Clipboard.Cut",
+
+    "colorscheme": "catppuccin-mocha"
+}
+```
+- Themes
+Clonar el repositorio:
+ https://github.com/catppuccin/micro/tree/main
+
+- Configuraciones
+  Habilitar soporte para true color (24-bit)
+```bash
+echo 'export MICRO_TRUECOLOR=1' >> ~/.zshrc
+source ~/.zshrc
+```

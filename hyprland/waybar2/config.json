@@ -5,39 +5,88 @@
   "exclusive": true,
   "passthrough": false,
   "gtk-layer-shell": true,
-  "height": 32,
-  "modules-left": ["hyprland/workspaces", "network", "hyprland/window"],
-  "modules-center": ["clock", "custom/cpu", "temperature", "battery"],
+  "height": 30,
+
+  "modules-left": [
+    "custom/launcher",
+    "memory",
+    "custom/cpu",
+    "temperature",
+    "network",
+    "hyprland/window"
+  ],
+  "modules-center": ["hyprland/workspaces"],
   "modules-right": [
     "tray",
     "backlight",
     "pulseaudio",
     "pulseaudio#microphone",
     "bluetooth",
+    "battery",
+    "clock",
+    "custom/power"
   ],
 
+  "custom/launcher": {
+    "format": " ",
+    "on-click": "wofi"
+  },
+
+  "custom/cpu": {
+    "exec": "bash -c \"top -bn1 | awk '/Cpu\\(s\\)/ {print \\$2 + \\$4}'\"",
+    "interval": 10,
+    "format": "  {}%",
+    "tooltip": true,
+    "tooltip-format": "{}%"
+  },
+
+  "temperature": {
+    "hwmon-path": "/sys/class/thermal/thermal_zone0/temp",
+    "critical-threshold": 80,
+    "format": " {temperatureC}°C",
+    "format-critical": " {temperatureC}°C",
+    "format-icons": ["", "", "", "", ""],
+    "interval": 30,
+    "tooltip": true
+  },
+
+  "memory": {
+    "interval": 30,
+    "format": " {used}GiB",
+    "max-length": 10
+  },
+
   "hyprland/window": {
-    "format": "🐧 {}",
+    "format": "{}"
   },
 
   "hyprland/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
     "on-click": "activate",
-    "persistent_workspaces": {
+    "all-outputs": true,
+    "active-only": false,
+    "persistent-workspaces": {
       "1": [],
       "2": [],
       "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": []
     },
-    "format": "{name}",
-    "format-focused": "{name}",
-    "format-visible": "{name}",
-    "format-urgent": "{name}",
+    "format": "{icon}",
+    "format-icons": {
+      "active": "<span font='10'>󰮯</span>",
+      "empty": "<span font='6'></span>",
+      "persistent": "󰊠"
+    }
   },
 
   "tray": {
     "icon-size": 15,
-    "spacing": 10,
+    "spacing": 10
   },
 
   "clock": {
@@ -54,35 +103,30 @@
         "days": "<span color='#a6e3a1'><b>{}</b></span>",
         "weeks": "<span color='#f9e2af'><b>W{}</b></span>",
         "weekdays": "<span color='#89dceb'><b>{}</b></span>",
-        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>",
-      },
+        "today": "<span color='#f38ba8'><b><u>{}</u></b></span>"
+      }
     },
-    "actions": {
-      "on-click": "tzlist",
-      "on-click-right": "gnome-calendar",
-      "on-scroll-up": "tzup",
-      "on-scroll-down": "tzdown",
-    },
-    "interval": 60,
+    "interval": 60
   },
 
   "backlight": {
-    "device": "intel_backlight",
+    "device": "amdgpu_bl1",
     "format": "{icon} {percent}%",
     "format-icons": ["󰃚", "󰃛", "󰃜", "󰃝", "󰃞", "󰃟", "󰃠"],
-    "on-scroll-up": "brightnessctl -d intel_backlight set +10%",
-    "on-scroll-down": "brightnessctl -d intel_backlight set 10%-",
-    "on-click": "brightnessctl -d intel_backlight set 50%",
+    "on-scroll-up": "brightnessctl -d amdgpu_bl1 set +10%",
+    "on-scroll-down": "brightnessctl -d amdgpu_bl1 set 10%-",
+    "on-click": "brightnessctl -d amdgpu_bl1 set 50%",
     "min-length": 9,
     "smooth-scrolling-threshold": 1,
     "tooltip": false,
+    "hidden": true
   },
 
   "battery": {
     "states": {
       "good": 80,
       "warning": 20,
-      "critical": 15,
+      "critical": 15
     },
     "format": "{icon} {capacity}%",
     "format-charging": "󰂄 {capacity}%",
@@ -90,7 +134,7 @@
     "format-alt": "{time} {icon}",
     "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
     "interval": 60,
-    "tooltip": true,
+    "tooltip": true
   },
 
   "pulseaudio": {
@@ -107,9 +151,9 @@
       "phone": "",
       "portable": "󰓃",
       "car": "󰄛",
-      "default": ["󰕿", "󰖀", "󰕾"],
+      "default": ["󰕿", "󰖀", "󰕾"]
     },
-    "tooltip": false,
+    "tooltip": false
   },
 
   "pulseaudio#microphone": {
@@ -119,7 +163,7 @@
     "on-click": "pamixer --default-source -t",
     "on-scroll-up": "pamixer --default-source -i 5",
     "on-scroll-down": "pamixer --default-source -d 5",
-    "scroll-step": 5,
+    "scroll-step": 5
   },
 
   "network": {
@@ -128,7 +172,7 @@
     "tooltip-format": "{essid} - {ifname} via {gwaddr} ",
     "format-linked": "{ifname} (No IP) ",
     "format-disconnected": "Disconnected ⚠",
-    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
+    "format-alt": "{ifname}:{essid} {ipaddr}/{cidr}"
   },
 
   "bluetooth": {
@@ -138,24 +182,11 @@
     "format-connected": " {num_connections}",
     "tooltip-format": "{device_alias}",
     "tooltip-format-connected": " {device_enumerate}",
-    "tooltip-format-enumerate-connected": "{device_alias}",
+    "tooltip-format-enumerate-connected": "{device_alias}"
   },
 
-  "temperature": {
-    "hwmon-path": "/sys/class/thermal/thermal_zone0/temp",
-    "critical-threshold": 80,
-    "format": " {temperatureC}°C",
-    "format-critical": " {temperatureC}°C",
-    "format-icons": ["", "", "", "", ""],
-    "interval": 30,
-    "tooltip": true,
-  },
-
-  "custom/cpu": {
-    "exec": "bash -c \"top -bn1 | awk '/Cpu\\(s\\)/ {print \\$2 + \\$4}'\"",
-    "interval": 10,
-    "format": "  {}%",
-    "tooltip": true,
-    "tooltip-format": "Uso actual de CPU: {}%",
-  },
+  "custom/power": {
+    "format": "⏻",
+    "on-click": "/home/lionous/.config/waybar/scripts/powermenu.sh"
+  }
 }
