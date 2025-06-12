@@ -1,5 +1,22 @@
 # Configuraciones adicionales
 
+# ✅ Instalar dependencias
+```bash
+sudo pacman -S wofi
+```
+
+- swaylock
+```bash
+sudo pacman -S swaylock
+```
+
+> [!note]
+> Si no funciona correctamente puede que falte alguna dependencias... instalar con **paru** o **yay**
+```bash
+paru -S swaylock-effects
+```
+
+
 # ✅ Instalar fuentes emoji en Arch Linux
 ```bash
 sudo pacman -S ttf-apple-emoji
@@ -21,6 +38,13 @@ export QT_QPA_PLATFORMTHEME=qt6ct
 ```bash
 nwg-look
 ```
+
+# ✅ Notificador
+## 	Ligero, Wayland-native
+```bash
+sudo pacman -S mako
+```
+
 
 # ✅ Arranque automatico con SDDM
 
@@ -65,8 +89,8 @@ reboot
 3. sddm-theme-astronaut
 4. sddm-sugar-candy-git
 
-note: puedes verlo cada uno en su respectivo repositorio
-
+> [!note]
+> puedes verlo cada uno en su respectivo repositorio ejemplo: [Themes](https://github.com/catppuccin/sddm).
 
 # ✅ Micro terminal-based text
 ```bash
@@ -90,10 +114,22 @@ micro ~/.config/micro/settings.json
 - Themes
 Clonar el repositorio:
  https://github.com/catppuccin/micro/tree/main
-
+i
 - Configuraciones
   Habilitar soporte para true color (24-bit)
 ```bash
 echo 'export MICRO_TRUECOLOR=1' >> ~/.zshrc
 source ~/.zshrc
+```
+
+
+
+# ✅ Activar Hyprland plugins
+> [!note]
+> En la página oficial se puede encontrar la documentacion **https://wiki.hypr.land/Plugins/Using-Plugins/**
+```zsh
+sudo pacman -S cpio
+sudo pacman -S cmake
+sudo pacman -S git
+sudo pacman -S meson
 ```
